@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'nav_bar.dart';
 import 'register_screen.dart';
 import 'home_screen.dart';
 import 'package:flutter/material.dart';
@@ -62,11 +63,12 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(),
       appBar: AppBar(
         title: const Text('Go Together'),
         backgroundColor: mainColor,
         centerTitle: true,
-        automaticallyImplyLeading: false,
+        //automaticallyImplyLeading: false,
       ),
       body: Stack(
         children: [
@@ -109,14 +111,22 @@ class _LoginScreenState extends State<LoginScreen> {
           _isLoading ? Center(child: CircularProgressIndicator()) : Stack(),
         ],
       ),
+      /// Bottom Navigation
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        unselectedLabelStyle: const TextStyle(color: Colors.white, fontSize: 14),
+        backgroundColor: const Color(0xFF084A76),
+        fixedColor: Colors.white,
+        unselectedItemColor: Colors.white,
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.login),
+            icon: Icon(
+              Icons.login,
+              color: Colors.red,
+            ),
             label: "Login",
           ),
           BottomNavigationBarItem(
@@ -127,6 +137,24 @@ class _LoginScreenState extends State<LoginScreen> {
         currentIndex: _selectedIndex,
         onTap: _onTabTapped,
       ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: [
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       label: 'Home',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.login),
+      //       label: "Login",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.app_registration),
+      //       label: "Register",
+      //     ),
+      //   ],
+      //   currentIndex: _selectedIndex,
+      //   onTap: _onTabTapped,
+      // ),
     );
   }
 }
