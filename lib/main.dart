@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Go Together App',
+      title: 'Go Together App Version 3',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
