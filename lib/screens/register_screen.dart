@@ -3,6 +3,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/services.dart';
+
 import 'login_screen.dart';
 import 'home_screen.dart';
 import 'package:flutter/material.dart';
@@ -49,8 +51,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
             context, MaterialPageRoute(builder: (context) => HomeScreen()));
         _selectedIndex = 0;
       } else if (index == 1) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginScreen()));
+
+        showDialog(
+            context: (context),
+            builder: (_){
+              return AlertDialog(
+                title:  Text('Are you sure?'),
+                content:  Text('Do you want to exit an App'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(false),
+                    child:  Text('No'),
+                  ),
+                  TextButton(
+                    //onPressed: () => Navigator.of(context).pop(true),
+                    onPressed: (){
+                      //Navigator.pop(context);
+                      SystemNavigator.pop();
+                    },
+                    child:  Text('Yes'),
+                  ),
+                ],
+              );
+            }
+        );
+
+        // Navigator.push(
+        //     context, MaterialPageRoute(builder: (context) => LoginScreen()));
 
         _selectedIndex = 1;
       } else if (index == 2) {
@@ -124,8 +151,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.login),
-            label: "Login",
+            icon: Icon(Icons.logout),
+            label: "LogOut",
           ),
           BottomNavigationBarItem(
             icon: Icon(
